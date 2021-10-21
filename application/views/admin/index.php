@@ -90,53 +90,6 @@
     </div>
 
     <!-- Content Row -->
-
-    <div class="row">
-
-        <!-- Area Chart -->
-        <div class="col-xl-8 col-lg-7">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Statistik Penggunaan Aplikasi</h6>
-                </div>
-
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Kunjungan Wisata</h6>
-                </div>
-
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Domestik
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Mancanegara
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Content Row -->
     <div class="row">
 
         <!-- Content Column -->
@@ -148,64 +101,65 @@
                     <h6 class="m-0 font-weight-bold text-primary">Kunjungan Objek Wisata Terbanyak</h6>
                 </div>
                 <div class="card-body">
-                    <h4 class="small font-weight-bold">Lembang <span class="float-right">20%</span></h4>
+                    <h4 class="small font-weight-bold">Lembang <span class="float-right">75%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Ngamprah <span class="float-right">40%</span></h4>
+                    <h4 class="small font-weight-bold">Parongpong <span class="float-right">15%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Parongpong <span class="float-right">60%</span></h4>
+                    <h4 class="small font-weight-bold">Cipatat <span class="float-right">5%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <h4 class="small font-weight-bold">Gunung Halu <span class="float-right">80%</span></h4>
+                    <h4 class="small font-weight-bold">Cisarua <span class="float-right">5%</span></h4>
                     <div class="progress mb-4">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Padalarang <span class="float-right">100%</span></h4>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div class="col-lg-6 mb-4">
 
-            <!-- Illustrations -->
+        <div class="col-lg-6">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Lokasi Wisata Yang Terdaftar</h6>
                 </div>
+
+                <!-- Card Body -->
                 <div class="card-body">
-                    <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="<?= base_url('assets/'); ?>img/undraw_posting_photo.svg" alt="">
-                    </div>
-                    <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                        constantly updated collection of beautiful svg images that you can use
-                        completely free and without attribution!</p>
-                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                        unDraw &rarr;</a>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqp5UtHcfmoDCnM6PGhf47Sjn5pwMK1dQ&callback=initMap"></script>
+                    <?php foreach ($detail_wisata as $dw) : ?>
+                        <script>
+                            function initialize() {
+                                var propertiPeta = {
+                                    center: new google.maps.LatLng(<?= $dw['latitude']; ?>, <?= $dw['longitude']; ?>),
+                                    zoom: 19,
+                                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                                };
+
+                                var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+
+                                // membuat Marker
+                                var marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(<?= $dw['latitude']; ?>, <?= $dw['longitude']; ?>),
+                                    map: peta,
+                                    animation: google.maps.Animation.BOUNCE
+                                });
+                            }
+
+                            // event jendela di-load  
+                            google.maps.event.addDomListener(window, 'load', initialize);
+                        </script>
+                    <?php endforeach; ?>
+
+                    <div id="googleMap" style="width:100%;height:380px;"></div>
                 </div>
             </div>
-
-            <!-- Approach -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                        custom components and custom utility classes.</p>
-                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                        Bootstrap framework, especially the utility classes.</p>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>

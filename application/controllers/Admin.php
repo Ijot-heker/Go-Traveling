@@ -15,6 +15,22 @@ class Admin extends CI_Controller
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+        $this->db->select('wisata_perkecamatan.*, wisata.kecamatan');
+        $this->db->from('wisata_perkecamatan');
+        $this->db->join('wisata', 'wisata_perkecamatan.id_kecamatan=wisata.id');
+        $this->db->order_by('wisata_perkecamatan.nama');
+
+        $query = $this->db->get();
+        $data['detail_wisata'] = $query->result_array();
+        // var_dump($data['detail_wisata']);
+        // die();
+
+        $this->db->select('hotel_perkecamatan.*, wisata.kecamatan');
+        $this->db->from('hotel_perkecamatan');
+        $this->db->join('wisata', 'hotel_perkecamatan.id_hotel_perkecamatan=wisata.id');
+        $query2 = $this->db->get();
+        $data['detail_penginapan'] = $query2->result_array();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

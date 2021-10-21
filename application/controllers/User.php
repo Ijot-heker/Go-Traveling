@@ -15,8 +15,6 @@ class User extends CI_Controller
         $data['title'] = 'My Profile';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-
-
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -30,8 +28,8 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
-        $this->form_validation->set_rules('nik', 'nik', 'required|trim');
-        $this->form_validation->set_rules('no_tlp', 'no_tlp', 'required|trim');
+        $this->form_validation->set_rules('nik', 'NIK', 'required|trim');
+        $this->form_validation->set_rules('no_tlp', 'Nomor Telepon', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

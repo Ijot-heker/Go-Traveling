@@ -34,18 +34,13 @@ class Vtweb extends CI_Controller
 		$this->load->view('checkout_vtweb');
 	}
 
-	public function vtweb_checkout()
+	public function vtweb_checkout($id)
 	{
-		// $this->db->select('tr.*,us.*');
-		// $this->db->from('transaksi tr');
-		// $this->db->join('user us', 'tr.id_user=us.id', 'INNER');
-		// $this->db->where('tr.id_user', $id_user);
-
 		$this->db->select('*');
 		$this->db->from('transaksi');
+		$this->db->where('order_id', $id);
 		$query = $this->db->get();
 		$data_pembayaran = $query->row();
-
 
 		$transaction_details = array(
 			'order_id' 		=> $data_pembayaran->order_id,
@@ -58,7 +53,7 @@ class Vtweb extends CI_Controller
 				'id' 		=> 'item1',
 				'price' 	=> $data_pembayaran->jumlah_bayar,
 				'quantity' 	=> 1,
-				'name' 		=> 'Biaya Paket Wisata'
+				'name' 		=> 'Biaya Kunjungan Wisata'
 			)
 		];
 
@@ -85,9 +80,9 @@ class Vtweb extends CI_Controller
 
 		// Populate customer's Info
 		$customer_details = array(
-			'first_name' 			=> $data_pembayaran->email,
+			'first_name' 			=> $data_pembayaran->nama,
 			'email' 				=> $data_pembayaran->email,
-			'phone' 				=> "081322311801"
+			'phone' 				=> $data_pembayaran->phone
 			// 'billing_address' => $billing_address,
 			// 'shipping_address' => $shipping_address
 		);

@@ -142,7 +142,7 @@ class Auth extends CI_Controller
         $this->load->library('email', $config);
         $this->email->initialize($config);
 
-        $this->email->from('anonymousbetatest1@gmail.com', 'Aplikasi Wisata');
+        $this->email->from('anonymousbetatest1@gmail.com', 'Go Traveling');
         $this->email->to($this->input->post('email'));
 
         if ($type == 'verify') {
@@ -159,9 +159,9 @@ class Auth extends CI_Controller
             $this->email->message('Kami ingin menginformasikan bahwa anda sudah berhasil melakukan reset password<br>
                         <p>Silahkan menekan link yang ada di bawah pesan ini untuk melanjutkan proses login dengan mengatur terlebih dahulu password baru anda.
                         </p><br>
-                        Terima kasih karena telah menggunakan aplikasi wisata ini sebagai alternatif anda dalam melakukan perjalanan wisata ke Kabupaten Bandung Barat. 
+                        Terima kasih karena telah menggunakan Go Traveling ini sebagai alternatif anda dalam melakukan perjalanan wisata ke Kabupaten Bandung Barat. 
                         Salam,<br>
-                        <b>Developer - Aplikasi Wisata</b><br>Click this link to reset your password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+                        <b>Developer - Go Traveling</b><br>Click this link to reset your password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
         }
 
 

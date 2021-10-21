@@ -176,6 +176,57 @@
     </script>
 <?php } ?>
 
+<?php if ($this->session->flashdata('flash_booking')) { ?>
+    <script>
+        const flashData = $('.flash-data').data('flashdata');
+
+        Swal.fire({
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            toast: true,
+            timerProgressBar: true,
+            icon: '<?= $this->session->flashdata("flash_booking") ? "warning" : "success"; ?>',
+            title: 'Mohon Maaf, Tidak ada kunjungan wisata yang sesuai dengan ' + '<?= $this->session->flashdata("flash_booking") ? "harga!" : "Berhasil"; ?> ',
+            text: '<?= $this->session->flashdata("flash_booking") ? $this->session->flashdata("error") : $this->session->flashdata("success"); ?>',
+        })
+    </script>
+<?php } ?>
+
+<?php if ($this->session->flashdata('flash_pesan')) { ?>
+    <script>
+        const flashData = $('.flash-data').data('flashdata');
+
+        Swal.fire({
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            toast: true,
+            timerProgressBar: true,
+            icon: '<?= $this->session->flashdata("flash_pesan") ? "success" : "error"; ?>',
+            title: 'Kunjungan wisata ' + '<?= $this->session->flashdata("flash_pesan") ? "Berhasil" : "Gagal!"; ?> ' + ' dipilih, silahkan lanjutkan ke proses pembayaran',
+            text: '<?= $this->session->flashdata("flash_pesan") ? $this->session->flashdata("success") : $this->session->flashdata("error"); ?>',
+        })
+    </script>
+<?php } ?>
+
+<?php if ($this->session->flashdata('flash_hari')) { ?>
+    <script>
+        const flashData = $('.flash-data').data('flashdata');
+
+        Swal.fire({
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            toast: true,
+            timerProgressBar: true,
+            icon: '<?= $this->session->flashdata("flash_hari") ? "warning" : "success"; ?>',
+            title: 'Mohon Maaf, Budget anda hanya cukup untuk kunjungan ' + '<?= $this->session->flashdata("flash_hari") ? "1 hari!" : "Berhasil"; ?> ',
+            text: '<?= $this->session->flashdata("flash_hari") ? $this->session->flashdata("error") : $this->session->flashdata("success"); ?>',
+        })
+    </script>
+<?php } ?>
+
 </body>
 
 </html>

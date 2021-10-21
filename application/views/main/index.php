@@ -65,30 +65,30 @@
                     <div class="skills-content">
 
                         <div class="progress">
-                            <span class="skill">Kecamatan Lembang <i class="val">100%</i></span>
-                            <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="progress">
-                            <span class="skill">Kecamatan Padalarang <i class="val">90%</i></span>
-                            <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-
-                        <div class="progress">
-                            <span class="skill">Kecamatan Parongpong <i class="val">75%</i></span>
+                            <span class="skill">Kecamatan Lembang <i class="val">75%</i></span>
                             <div class="progress-bar-wrap">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
 
                         <div class="progress">
-                            <span class="skill">Kecamatan Cililin <i class="val">55%</i></span>
+                            <span class="skill">Kecamatan Parongpong <i class="val">15%</i></span>
                             <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="skill">Kecamatan Cipatat <i class="val">5%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="skill">Kecamatan Cisarua <i class="val">5%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
 

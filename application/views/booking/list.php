@@ -18,25 +18,36 @@
         </thead>
         <tbody>
             <?php $i = 1; ?>
-            <?php foreach ($list_transaksi as $lt) : ?>
+            <?php foreach ($transaksi as $t) : $id = $t['order_id']; ?>
                 <tr>
                     <th scope="row"><?= $i; ?></th>
-                    <th><?= $lt['order_id']; ?></th>
-                    <th><?= $lt['tanggal_pemesanan']; ?></th>
-                    <th><?= $lt['kunjungan_wisata']; ?></th>
-                    <th><?= $lt['tanggal_berangkat']; ?></th>
-                    <th><?= $lt['status']; ?></th>
-                    <th>
-                        <a href="<?= base_url(); ?>vtweb/vtweb_checkout" class="badge badge-warning">Detail</a>
-                    </th>
+                    <th><?= $t['order_id']; ?></th>
+                    <th><?= $t['tanggal_booking']; ?></th>
+                    <th><?= $t['tanggal_berangkat']; ?></th>
+                    <th><?= $t['tanggal_pulang']; ?></th>
+                    <th><?= $t['transaction_status']; ?></th>
+
+                    <?php
+                    if ($t['transaction_status'] == "Pending") {
+                    ?>
+                        <th>
+                            <a href="<?= base_url(); ?>booking/detail_pemesanan/<?= $id; ?>" class="badge badge-warning">Detail</a>
+                            <a href="<?= base_url(); ?>vtweb/vtweb_checkout/<?= $id; ?>" class="badge badge-success">Bayar</a>
+                        </th>
+                    <?php
+                    } else {
+                    ?>
+                        <th>
+                            <a href="<?= base_url(); ?>booking/detail_pemesanan/<?= $id; ?>" class="badge badge-warning">Detail</a>
+                        </th>
+                    <?php
+                    }
+                    ?>
                 </tr>
                 <?php $i++; ?>
             <?php endforeach; ?>
         </tbody>
     </table>
-
-
-
 
 </div>
 <!-- /.container-fluid -->
