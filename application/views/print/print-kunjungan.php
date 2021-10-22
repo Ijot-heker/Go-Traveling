@@ -63,72 +63,73 @@
             <table border="1" cellpadding="10">
                 <tr>
                     <td id="right"><strong>ORDER ID</strong></td>
-                    <td id="left" colspan="2"><?= $dt['order_id']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['order_id']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Virtual Number</strong></td>
-                    <td id="left" colspan="2"><?= $dt['va_number']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['va_number']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Bank Pembayaran</strong></td>
-                    <td id="left" colspan="2"><?= $dt['bank']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['bank']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Payment Type</strong></td>
-                    <td id="left" colspan="2"><?= $dt['payment_type']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['payment_type']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Nama Pengguna</strong></td>
-                    <td id="left" colspan="2"><?= $dt['nama']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['nama']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Email</strong></td>
-                    <td id="left" colspan="2"><?= $dt['email']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['email']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Telepon</strong></td>
-                    <td id="left" colspan="2"><?= $dt['phone']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['phone']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Tanggal Booking</strong></td>
-                    <td id="left" colspan="2"><?= $dt['tanggal_booking']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['tanggal_booking']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Tanggal Berangkat</strong></td>
-                    <td id="left" colspan="2"><?= $dt['tanggal_berangkat']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['tanggal_berangkat']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Tanggal Pulang</strong></td>
-                    <td id="left" colspan="2"><?= $dt['tanggal_pulang']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['tanggal_pulang']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Jumlah Bayar</strong></td>
-                    <td id="left" colspan="2"><?= $dt['jumlah_bayar']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['jumlah_bayar']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Status Pembayaran</strong></td>
-                    <td id="left" colspan="2"><?= $dt['transaction_status']; ?></td>
+                    <td id="left" colspan="3"><?= $dt['transaction_status']; ?></td>
                 </tr>
 
                 <tr>
                     <td id="right"><strong>Kunjungan</strong></td>
-                    <td id="left" colspan="2"></td>
+                    <td id="left" colspan="3"></td>
                 </tr>
 
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Kunjungan</th>
+                    <th scope="col">Tanggal</th>
                     <th scope="col">Harga</th>
                 </tr>
                 <?php $i = 1; ?>
@@ -137,19 +138,21 @@
                 $no = 1;
                 $i = 0;
                 $wisata_arr = explode(';', $dt['kunjungan']);
+                $tanggal_arr = explode(';', $dt['tanggal']);
                 $harga_arr = explode(';', $dt['harga']);
                 foreach ($wisata_arr as $kunjungan) {
                 ?>
                     <tr align="left">
                         <th scope="row"><?= $no++; ?></th>
                         <th><?= $kunjungan . '<br>'; ?></th>
+                        <th><?= $tanggal_arr[$i]; ?></th>
                         <th><?= $harga_arr[$i]; ?></th>
                     </tr>
                 <?php $i++;
                 } ?>
                 <?php $i++; ?>
                 <tr>
-                    <th colspan="2" class="m-0 font-weight-bold text-primary">Jumlah</th>
+                    <th colspan="3" class="m-0 font-weight-bold text-primary">Jumlah</th>
                     <th><?= $dt['jumlah_bayar']; ?></th>
                 </tr>
             <?php endforeach; ?>

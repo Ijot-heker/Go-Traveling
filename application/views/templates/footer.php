@@ -227,6 +227,23 @@
     </script>
 <?php } ?>
 
+<?php if ($this->session->flashdata('flash_minggu')) { ?>
+    <script>
+        const flashData = $('.flash-data').data('flashdata');
+
+        Swal.fire({
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            toast: true,
+            timerProgressBar: true,
+            icon: '<?= $this->session->flashdata("flash_minggu") ? "warning" : "success"; ?>',
+            title: 'Mohon Maaf, Waktu kunjungan maksimal ' + '<?= $this->session->flashdata("flash_minggu") ? "7 hari!" : "Berhasil"; ?> ',
+            text: '<?= $this->session->flashdata("flash_minggu") ? $this->session->flashdata("error") : $this->session->flashdata("success"); ?>',
+        })
+    </script>
+<?php } ?>
+
 </body>
 
 </html>

@@ -54,13 +54,22 @@ class Booking extends CI_Controller
         $this->db->from('wisata_perkecamatan');
         $this->db->limit($banyak_wisata);
         $this->db->where('biaya<=', $this->input->post('dana'));
-        // $this->db->order_by($banyak_wisata);
         $query = $this->db->get();
         $data['wisata'] = $query->result_array();
-        // $array[5] = $data['wisata'];
-
-        // print_r($data['wisata']['nama']);
-        // die();
+        
+        //Membagi data wisata pertabel
+        $hari = $banyak_wisata/5;
+        $array_wisata = array();
+        
+        //Fungsi menambahkan array pada tiap 5 objek wisata
+        $increment = 0;
+        for($i = 0; $i <= $hari-1; $i++){
+            for ($j=0+$increment; $j <= 4+$increment ; $j++) { 
+                $array_wisata[$i][$j] =  $data['wisata'][$j];
+            }
+            $increment = $increment+5;
+        }
+        $data['array_wisata'] = $array_wisata;
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -75,6 +84,10 @@ class Booking extends CI_Controller
                 redirect('booking/index');
             } elseif ($this->input->post('dana') < 700000 && $total > 1) {
                 $this->session->set_flashdata('flash_hari', 'hari');
+                redirect('booking/index');
+            } elseif ($total > 6) {
+                print("Gak boleh lama-lama");
+                $this->session->set_flashdata('flash_minggu', 'minggu');
                 redirect('booking/index');
             } else {
                 $this->load->view('templates/header', $data);
@@ -119,7 +132,7 @@ class Booking extends CI_Controller
             'phone'    => $user->no_tlp,
             'layanan'  => 'Payment Gateway',
             'tanggal_booking'    => date('Y-m-d'),
-            'tanggal_berangkat'  => $this->input->post('tanggal_berangkat'),
+            'tanggal_berangkat'  => $this->input->post('tanggal_berangkat1'),
             'tanggal_pulang'     => $this->input->post('tanggal_pulang'),
             'jumlah_bayar'       => $this->input->post('jumlah_bayar'),
             'transaction_status' => 'Pending'
@@ -128,14 +141,17 @@ class Booking extends CI_Controller
 
         //Menyimpan data ke tabel detail_pemesanan
         $nama_wisata = "";
+        $tanggal_berangkat = "";
         $harga = "";
         $i = 0;
         foreach ($_POST['nama_wisata'] as $wisata) {
             if ($i == 0) {
                 $nama_wisata = $wisata;
+                $tanggal_berangkat = $_POST['tanggal_berangkat'][$i];
                 $harga = $_POST['biaya'][$i];
             } else {
                 $nama_wisata = $nama_wisata . ";" . $wisata;
+                $tanggal_berangkat = $tanggal_berangkat . ";" . $_POST['tanggal_berangkat'][$i];
                 $harga = $harga . ";" . $_POST['biaya'][$i];
             }
             $i++;
@@ -144,6 +160,7 @@ class Booking extends CI_Controller
         $data2 = [
             'id_transaksi' => $data['order_id'],
             'kunjungan'    => $nama_wisata,
+            'tanggal'      => $tanggal_berangkat,
             'harga'        => $harga
         ];
 

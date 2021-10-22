@@ -110,6 +110,7 @@
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Kunjungan</th>
+                                            <th scope="col">Tanggal</th>
                                             <th scope="col">Harga</th>
                                         </tr>
                                     </thead>
@@ -119,18 +120,20 @@
                                         $no = 1;
                                         $i = 0;
                                         $wisata_arr = explode(';', $dt['kunjungan']);
+                                        $tanggal_arr = explode(';', $dt['tanggal']);
                                         $harga_arr = explode(';', $dt['harga']);
                                         foreach ($wisata_arr as $kunjungan) {
                                         ?>
                                             <tr>
                                                 <th scope="row"><?= $no++; ?></th>
                                                 <th><?= $kunjungan . '<br>'; ?></th>
+                                                <th><?= $tanggal_arr[$i]; ?></th>
                                                 <th><?= $harga_arr[$i]; ?></th>
                                             </tr>
                                         <?php $i++;
                                         } ?>
                                         <tr>
-                                            <th colspan="2" class="m-0 font-weight-bold text-primary">Jumlah</th>
+                                            <th colspan="3" class="m-0 font-weight-bold text-primary">Jumlah</th>
                                             <th class="m-0 font-weight-bold text-primary"><?= $dt['jumlah_bayar']; ?></th>
                                         </tr>
                                     </tbody>
