@@ -132,7 +132,7 @@ class Auth extends CI_Controller
             'protocol'  => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_user' => 'anonymousbetatest1@gmail.com',
-            'smtp_pass' => 'Muhammad123',
+            'smtp_pass' => 'Muhammadijot123',
             'smtp_port' => 465,
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
@@ -157,11 +157,10 @@ class Auth extends CI_Controller
         } else if ($type == 'forgot') {
             $this->email->subject('Reset Password');
             $this->email->message('Kami ingin menginformasikan bahwa anda sudah berhasil melakukan reset password<br>
-                        <p>Silahkan menekan link yang ada di bawah pesan ini untuk melanjutkan proses login dengan mengatur terlebih dahulu password baru anda.
-                        </p><br>
-                        Terima kasih karena telah menggunakan Go Traveling ini sebagai alternatif anda dalam melakukan perjalanan wisata ke Kabupaten Bandung Barat. 
+                        <p>Silahkan menekan link yang ada di bawah pesan ini untuk melanjutkan proses login dengan mengatur terlebih dahulu password baru anda. Click this link to reset your password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>
+                        <br> Terima kasih karena telah menggunakan Go Traveling ini sebagai alternatif anda dalam melakukan perjalanan wisata ke Kabupaten Bandung Barat. 
                         Salam,<br>
-                        <b>Developer - Go Traveling</b><br>Click this link to reset your password : <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
+                        <b>Developer - Go Traveling</b>');
         }
 
 

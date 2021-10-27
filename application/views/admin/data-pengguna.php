@@ -44,7 +44,7 @@
                                         <th><?= $peng['flag_active'] == 1 ? 'Aktif' : 'Tidak Aktif'; ?></th>
                                         <th><?= date('d F Y', $peng['date_created']); ?></th>
                                         <th>
-                                            <a href="" class="badge badge-warning">Detail</a>
+                                            <a href="<?= base_url(); ?>admin/detail_pengguna/<?= $peng['id']; ?>" class="badge badge-warning">Detail</a>
                                             <a href="<?= base_url(); ?>admin/hapus_pengguna/<?= $peng['id']; ?>" class="badge badge-danger" onclick="return confirm('Anda yakin ingin menghapus user <?= $peng['name']; ?>?');">Delete</a>
                                         </th>
                                     </tr>

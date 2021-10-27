@@ -281,4 +281,22 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('flash_penginapan', 'Dihapus');
         redirect('admin/dataPenginapan');
     }
+
+    public function detail_pengguna($id)
+    {
+        $data['title'] = 'Detail Pengguna';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('id=', $id);
+        $query = $this->db->get();
+        $data['detail_pengguna'] = $query->result_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/detail-pengguna', $data);
+        $this->load->view('templates/footer');
+    }
 }

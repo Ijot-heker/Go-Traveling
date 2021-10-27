@@ -38,39 +38,6 @@ class Booking extends CI_Controller
         $total = $diff->days + 1;
         $data['hari'] = $total;
 
-        //Mengambil data dari database
-        $dana = $this->input->post('dana') / $total;
-        $banyak_penginapan = $total * 1;
-        $this->db->select('*');
-        $this->db->from('hotel_perkecamatan');
-        $this->db->limit($banyak_penginapan);
-        $this->db->where('biaya<=', $dana);
-        $query = $this->db->get();
-        $data['penginapan'] = $query->result_array();
-
-
-        $banyak_wisata = $total * 5;
-        $this->db->select('*');
-        $this->db->from('wisata_perkecamatan');
-        $this->db->limit($banyak_wisata);
-        $this->db->where('biaya<=', $this->input->post('dana'));
-        $query = $this->db->get();
-        $data['wisata'] = $query->result_array();
-        
-        //Membagi data wisata pertabel
-        $hari = $banyak_wisata/5;
-        $array_wisata = array();
-        
-        //Fungsi menambahkan array pada tiap 5 objek wisata
-        $increment = 0;
-        for($i = 0; $i <= $hari-1; $i++){
-            for ($j=0+$increment; $j <= 4+$increment ; $j++) { 
-                $array_wisata[$i][$j] =  $data['wisata'][$j];
-            }
-            $increment = $increment+5;
-        }
-        $data['array_wisata'] = $array_wisata;
-
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -78,6 +45,40 @@ class Booking extends CI_Controller
             $this->load->view('booking/index', $data);
             $this->load->view('templates/footer');
         } else {
+
+            //Mengambil data penginapan dari database
+            $dana = $this->input->post('dana') / $total;
+            $banyak_penginapan = $total * 1;
+            $this->db->select('*');
+            $this->db->from('hotel_perkecamatan');
+            $this->db->limit($banyak_penginapan);
+            $this->db->where('biaya<=', $dana);
+            $query = $this->db->get();
+            $data['penginapan'] = $query->result_array();
+
+            //Mengambil data kunjungan dari database
+            $banyak_wisata = $total * 5;
+            $this->db->select('*');
+            $this->db->from('wisata_perkecamatan');
+            $this->db->limit($banyak_wisata);
+            $this->db->where('biaya<=', $this->input->post('dana'));
+            $query = $this->db->get();
+            $data['wisata'] = $query->result_array();
+
+            //Membagi data wisata pertabel
+            $hari = $banyak_wisata / 5;
+            $array_wisata = array();
+
+            //Fungsi menambahkan array pada tiap 5 objek wisata
+            $increment = 0;
+            for ($i = 0; $i <= $hari - 1; $i++) {
+                for ($j = 0 + $increment; $j <= 4 + $increment; $j++) {
+                    $array_wisata[$i][$j] =  $data['wisata'][$j];
+                }
+                $increment = $increment + 5;
+            }
+            $data['array_wisata'] = $array_wisata;
+
             //Fungsi booking
             if ($this->input->post('dana') < 200000) {
                 $this->session->set_flashdata('flash_booking', 'harga');
@@ -85,8 +86,9 @@ class Booking extends CI_Controller
             } elseif ($this->input->post('dana') < 700000 && $total > 1) {
                 $this->session->set_flashdata('flash_hari', 'hari');
                 redirect('booking/index');
-            } elseif ($total > 6) {
+            } elseif ($this->input->post('dana') >= 700000 && $total > 7) {
                 print("Gak boleh lama-lama");
+                die();
                 $this->session->set_flashdata('flash_minggu', 'minggu');
                 redirect('booking/index');
             } else {
